@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
 
 #include "headers/i_o.h"
@@ -8,9 +9,17 @@
 
 bool hasEnoughArguments(int argc)
 {
-    return argc == 2;
+    return argc == 3;
 }
 
+/*
+    argv[1]: input file to feeding the program.
+    argv[2]: method desired to use to solve the knapsack 0-1 problem.
+
+    argv[2] can be: "dynamic", "bnb" and "backtracking".
+
+    Note: "bnb" stands for "Branch-And-Bound". 
+*/
 int main(int argc, char *argv[])
 {
     FILE *file;
@@ -19,6 +28,8 @@ int main(int argc, char *argv[])
 
     if(hasEnoughArguments(argc) == false)
     {
+        printf("Quantidade errada de argumentos!\n\n");
+        printf("Uso: %s <nome_arquivo> <dynamic | backtracking | bnb>\n", argv[0]);
         exit(1);
     }
 
@@ -27,6 +38,7 @@ int main(int argc, char *argv[])
     // If error on opening the file passed by argument
     if(file == NULL)
     {
+        printf("Falha ao abrir o arquivo!\n");
         exit(2);
     }
 
@@ -38,7 +50,16 @@ int main(int argc, char *argv[])
     // Read backpack data and put it in backpack variable
     readBackpackDataFile(file, lines_amount, &backpack);
 
-    dynamicApproch(&backpack);
+    {
+        if(!strcmp(argv[2], "dynamic"))
+            dynamicApproch(&backpack);
+        else if(!strcmp(argv[2], "backtracking"))
+            printf("Metodo de backtracking ainda nao implementado!\n");
+        else if(!strcmp(argv[2], "bnb"))
+            printf("Metodo de Branch-And-Bound ainda nao implementado!\n");
+        else
+            printf("Metodo especificado nao e valido!\n");
+    }
 
     freeItems(&(backpack.items));
 
