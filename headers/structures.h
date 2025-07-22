@@ -2,9 +2,10 @@
 #define __STRUCTURES_H__
 
 typedef unsigned int WeighType;
+typedef unsigned int ValueType;
 
 typedef struct item {
-    double value;
+    ValueType value;
     WeighType weigh;
 } Item;
 
