@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "../headers/dynamic.h"
+
+// #define ENABLE_METRICS
 
 typedef struct memo {
     int items_amount;
@@ -105,7 +108,28 @@ int dynamicApproch(Backpack *b)
     if(allocMemoTable(b->weigh, b->items_amount) == NULL)
         return -1;
 
+    #ifdef ENABLE_METRICS
+        clock_t clock_begin;
+        clock_t clock_end;
+        double seconds;
+
+        printf("----- REALIZANDO METRICAS DO PROGRAMA -----\n");
+        printf("Inicializando a medicao de clocks de CPU utilizada...\n");
+
+        clock_begin = clock();
+    #endif
+
     profit = dynamic(b->items, b->items_amount, b->weigh);
+
+    #ifdef ENABLE_METRICS
+        clock_end = clock();
+
+        seconds = ((double) (clock_end - clock_begin) / CLOCKS_PER_SEC);
+
+        printf("QUANTIDADE DE TICKS DE CLOCKS GASTOS PELA CPU: %ld\n", clock_end - clock_begin);
+        printf("QUANTIDADE DE SEGUNDOS GASTOS PELA CPU: %lfs\n", seconds);
+        printf("-------------------------------------------\n\n");
+    #endif
 
     showProfitAndItems(b->items, profit);
 
