@@ -1,8 +1,8 @@
 #ifndef __STRUCTURES_H__
 #define __STRUCTURES_H__
 
-typedef unsigned int WeighType;
-typedef unsigned int ValueType;
+typedef int WeighType;
+typedef int ValueType;
 
 typedef struct item {
     ValueType value;
@@ -12,10 +12,10 @@ typedef struct item {
 typedef struct backpack {
     WeighType weigh;
     Item *items;
-    unsigned int items_amount;
+    int items_amount;
 } Backpack;
 
-Item *allocItems(unsigned int n);
+Item *allocItems(int n);
 void freeItems(Item **pp_item);
 
 #endif

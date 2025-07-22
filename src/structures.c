@@ -2,7 +2,7 @@
 
 #include "../headers/structures.h"
 
-Item *allocItems(unsigned int n)
+Item *allocItems(int n)
 {
     Item *item = (Item*) malloc(n * sizeof(Item));
 

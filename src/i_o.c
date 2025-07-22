@@ -18,10 +18,10 @@ void closeFile(FILE *file)
     fclose(file);
 }
 
-unsigned int countLines(FILE *file)
+int countLines(FILE *file)
 {
     char buffer[BUFFER_SIZE];
-    unsigned int lines_counter;
+    int lines_counter;
 
     lines_counter = 0;
 
@@ -43,23 +43,23 @@ unsigned int countLines(FILE *file)
     return lines_counter;
 }
 
-void readBackpackDataFile(FILE *file, unsigned int lines_amount, Backpack *backpack)
+void readBackpackDataFile(FILE *file, int lines_amount, Backpack *backpack)
 {
     Item *p_item;
     char buffer[BUFFER_SIZE];
 
     // Because the first line specifies the backpack weigh
-    unsigned int items_amount = lines_amount - 1;
+    int items_amount = lines_amount - 1;
 
     fgets(buffer, BUFFER_SIZE, file);
 
     backpack->items_amount = items_amount;
     backpack->weigh = atoi(buffer);
 
-    for(unsigned int i = 0 ; i < items_amount ; i++)
+    for(int i = 0 ; i < items_amount ; i++)
     {
         p_item = &(backpack->items[i]);
         fgets(buffer, BUFFER_SIZE, file);
-        sscanf(buffer, "%u\t%lf", &(p_item->weigh), &(p_item->value));
+        sscanf(buffer, "%u\t%d", &(p_item->weigh), &(p_item->value));
     }
 }
