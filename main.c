@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 #include "headers/i_o.h"
+#include "headers/dynamic.h"
 #include "headers/structures.h"
 
 bool hasEnoughArguments(int argc)
@@ -36,6 +37,8 @@ int main(int argc, char *argv[])
 
     // Read backpack data and put it in backpack variable
     readBackpackDataFile(file, lines_amount, &backpack);
+
+    dynamicApproch(&backpack);
 
     freeItems(&(backpack.items));
 
