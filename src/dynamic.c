@@ -11,7 +11,7 @@ typedef struct memo {
     int **table;
 } Memo;
 
-Memo m;
+static Memo m;
 
 int **allocMemoTable(unsigned int capacity, unsigned int items_amount)
 {
@@ -129,9 +129,9 @@ int dynamicApproch(Backpack *b)
         printf("QUANTIDADE DE TICKS DE CLOCKS GASTOS PELA CPU: %ld\n", clock_end - clock_begin);
         printf("QUANTIDADE DE SEGUNDOS GASTOS PELA CPU: %lfs\n", seconds);
         printf("-------------------------------------------\n\n");
-    #endif
 
-    showProfitAndItems(b->items, profit);
+	showProfitAndItems(b->items, profit);
+    #endif
 
     freeMemoTable();
 
