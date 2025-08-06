@@ -6,6 +6,7 @@
 #include "headers/i_o.h"
 #include "headers/dynamic.h"
 #include "headers/structures.h"
+#include "headers/backtracking.h"
 
 bool hasEnoughArguments(int argc)
 {
@@ -54,7 +55,7 @@ int main(int argc, char *argv[])
         if(!strcmp(argv[2], "dynamic"))
             dynamicApproch(&backpack);
         else if(!strcmp(argv[2], "backtracking"))
-            printf("Metodo de backtracking ainda nao implementado!\n");
+            executarBacktracking(&backpack);
         else if(!strcmp(argv[2], "bnb"))
             printf("Metodo de Branch-And-Bound ainda nao implementado!\n");
         else
