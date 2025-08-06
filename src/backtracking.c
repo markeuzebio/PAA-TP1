@@ -94,7 +94,7 @@ int executarBacktracking(Backpack *mochila) {
         printf("QUANTIDADE DE SEGUNDOS GASTOS PELA CPU: %lfs\n", seconds);
         printf("-------------------------------------------\n\n");
 
-    exibirResultadoBacktracking(itens, total_itens, capacidade_mochila);
+        exibirResultadoBacktracking(itens, total_itens, capacidade_mochila);
     #endif
 
     free(melhor_solucao);
