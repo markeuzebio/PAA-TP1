@@ -84,6 +84,7 @@ int executarBacktracking(Backpack *mochila) {
     #endif
 
     mochila_backtracking(itens, 0, total_itens, capacidade_mochila, 0, 0);
+    exibirResultadoBacktracking(itens, total_itens, capacidade_mochila);
     
     #ifdef ENABLE_METRICS
         clock_end = clock();
@@ -93,8 +94,6 @@ int executarBacktracking(Backpack *mochila) {
         printf("QUANTIDADE DE TICKS DE CLOCKS GASTOS PELA CPU: %ld\n", clock_end - clock_begin);
         printf("QUANTIDADE DE SEGUNDOS GASTOS PELA CPU: %lfs\n", seconds);
         printf("-------------------------------------------\n\n");
-
-        exibirResultadoBacktracking(itens, total_itens, capacidade_mochila);
     #endif
 
     free(melhor_solucao);

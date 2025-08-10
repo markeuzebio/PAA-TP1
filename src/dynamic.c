@@ -120,6 +120,7 @@ int dynamicApproch(Backpack *b)
     #endif
 
     profit = dynamic(b->items, b->items_amount, b->weigh);
+	showProfitAndItems(b->items, profit);
 
     #ifdef ENABLE_METRICS
         clock_end = clock();
@@ -129,8 +130,6 @@ int dynamicApproch(Backpack *b)
         printf("QUANTIDADE DE TICKS DE CLOCKS GASTOS PELA CPU: %ld\n", clock_end - clock_begin);
         printf("QUANTIDADE DE SEGUNDOS GASTOS PELA CPU: %lfs\n", seconds);
         printf("-------------------------------------------\n\n");
-
-	showProfitAndItems(b->items, profit);
     #endif
 
     freeMemoTable();
