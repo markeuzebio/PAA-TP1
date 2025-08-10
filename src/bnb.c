@@ -4,6 +4,8 @@
 #include <string.h>
 #include "../headers/bnb.h"
 
+#define ENABLE_METRICS
+
 
 int compareNodes(const void *a, const void *b) {
     Node *n1 = *(Node**)a;
@@ -150,7 +152,13 @@ int branchAndBoundApproach(Backpack *b) {
         free(u->selected_items);
         free(u);
     }
-
+    printf("Lucro máximo: R$ %d\n", best_profit);
+    printf("Itens colocados na mochila:\n");
+    for (int i = 0; i < b->items_amount; i++) {
+        if (best_items[i]) {
+            printf("\t(Item: %d, Valor: %d, Peso: %d)\n", i+1, b->items[i].value, b->items[i].weigh);
+        }
+    }
     #ifdef ENABLE_METRICS
         clock_t clock_end = clock();
         double seconds = ((double)(clock_end - clock_begin) / CLOCKS_PER_SEC);
@@ -159,16 +167,11 @@ int branchAndBoundApproach(Backpack *b) {
         printf("QUANTIDADE DE TICKS DE CLOCKS GASTOS PELA CPU: %ld\n", clock_end - clock_begin);
         printf("QUANTIDADE DE SEGUNDOS GASTOS PELA CPU: %lfs\n", seconds);
         printf("-------------------------------------------\n\n");
+        
     #endif
 
     // Exibir resultado
-    printf("Lucro máximo: R$ %d\n", best_profit);
-    printf("Itens colocados na mochila:\n");
-    for (int i = 0; i < b->items_amount; i++) {
-        if (best_items[i]) {
-            printf("\t(Item: %d, Valor: %d, Peso: %d)\n", i+1, b->items[i].value, b->items[i].weigh);
-        }
-    }
+
 
     free(best_items);
     freeQueue(pq);

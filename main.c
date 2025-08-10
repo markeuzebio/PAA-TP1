@@ -7,6 +7,7 @@
 #include "headers/dynamic.h"
 #include "headers/structures.h"
 #include "headers/backtracking.h"
+#include "headers/bnb.h"
 
 bool hasEnoughArguments(int argc)
 {
