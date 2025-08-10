@@ -39,7 +39,7 @@ int **allocMemoTable(unsigned int capacity, unsigned int items_amount)
 
 void freeMemoTable()
 {
-    for(unsigned int i = 0 ; i <= m.items_amount ; i++)
+    for(int i = 0 ; i <= m.items_amount ; i++)
         free(m.table[i]);
 
     free(m.table);
