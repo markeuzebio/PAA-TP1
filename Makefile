@@ -15,7 +15,7 @@ H_FILES := $(wildcard $(INC_DIR)/*.h)
 BIN_FILE := $(OUT_DIR)/exe
 
 $(BIN_FILE): $(O_FILES)
-	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(OUT_DIR)
 	$(CC) $(O_FILES) -o $@
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(H_FILES)
