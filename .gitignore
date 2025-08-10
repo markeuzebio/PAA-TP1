@@ -1,2 +1,4 @@
 .vscode/
 utils/*.txt
+app/
+build/

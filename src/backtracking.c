@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "../headers/backtracking.h"
+
+// #define ENABLE_METRICS
 
 int *melhor_solucao = NULL;
 int *solucao_atual = NULL;
