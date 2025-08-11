@@ -152,6 +152,8 @@ int branchAndBoundApproach(Backpack *b) {
         free(u->selected_items);
         free(u);
     }
+
+    // Exibir resultado
     printf("Lucro máximo: R$ %d\n", best_profit);
     printf("Itens colocados na mochila:\n");
     for (int i = 0; i < b->items_amount; i++) {
@@ -159,6 +161,7 @@ int branchAndBoundApproach(Backpack *b) {
             printf("\t(Item: %d, Valor: %d, Peso: %d)\n", i+1, b->items[i].value, b->items[i].weigh);
         }
     }
+    
     #ifdef ENABLE_METRICS
         clock_t clock_end = clock();
         double seconds = ((double)(clock_end - clock_begin) / CLOCKS_PER_SEC);
@@ -169,9 +172,6 @@ int branchAndBoundApproach(Backpack *b) {
         printf("-------------------------------------------\n\n");
         
     #endif
-
-    // Exibir resultado
-
 
     free(best_items);
     freeQueue(pq);

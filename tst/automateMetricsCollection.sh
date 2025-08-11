@@ -12,7 +12,7 @@ METRICS_OUT_FILE="metrics.txt"
 printf "%-20s%-20s%-20s\n" DINAMICO BACKTRACKING BRANCH-AND-BOUND > ${METRICS_OUT_FILE};
 printf "%.0s-" {1..58} >> ${METRICS_OUT_FILE}
 
-W=10
+W=100
 
 # Initially W = 10 and N increases
 for ((N = 100 ; N <= 1000 ; N += 100)); do
@@ -24,7 +24,8 @@ for ((N = 100 ; N <= 1000 ; N += 100)); do
         # Generate instances with W = 10 and N = ${N}
         (cd ${INPUT_FILES_DIR} ; ./exe ${W} ${N} && mv ${input_file_name} ${APP_DIR})
         t_dynamic=$(cd ${APP_DIR} && ./exe ${input_file_name} dynamic | egrep -o '[0-9]\.[0-9]+s')
-        t_backtracking=$(cd ${APP_DIR} && ./exe ${input_file_name} backtracking | egrep -o '[0-9]\.[0-9]+s')
+        # t_backtracking=$(cd ${APP_DIR} && ./exe ${input_file_name} backtracking | egrep -o '[0-9]\.[0-9]+s')
+        t_backtracking="N/A"
         t_branch_n_bound=$(cd ${APP_DIR} && ./exe ${input_file_name} bnb | egrep -o '[0-9]\.[0-9]+s')
 
         printf "\n%-20s%-20s%-20s" ${t_dynamic} ${t_backtracking} ${t_branch_n_bound} >> ${METRICS_OUT_FILE};
@@ -48,3 +49,11 @@ for ((N = 100 ; N <= 1000 ; N += 100)); do
         printf "\n%-20s%-20s%-20s" ${t_dynamic} ${t_backtracking} ${t_branch_n_bound} >> ${METRICS_OUT_FILE};
     done
 done
+
+TMP_FILE=$(mktemp)
+
+awk '{if ($0 ~ /[0-9]\.[0-9]+s/) print $1 "\t" $2 "\t" $3; else print $0}' ${METRICS_OUT_FILE} > ${TMP_FILE}
+
+cat ${TMP_FILE} > ${METRICS_OUT_FILE}
+
+rm ${TMP_FILE}
